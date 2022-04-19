@@ -59,4 +59,4 @@ sysinfo.txt
 crashlytics-build.properties
 
 # AR Foundation Editor Remote Installer Files
-*'Assets/Plugins/ARFoundationRemoteInstaller'*  
+*Assets/Plugins/ARFoundationRemoteInstaller*  
