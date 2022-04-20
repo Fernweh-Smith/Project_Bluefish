@@ -19,7 +19,7 @@ public class ARAxisRotationInteractable : ARBaseGestureInteractable
     protected override bool CanStartManipulationForGesture(TwistGesture gesture) => IsGameObjectSelected();
 
     public void OnResetRotation(){
-        transform.DORotateQuaternion(Quaternion.identity, 0.5f); 
+        transform.DOLocalRotateQuaternion(Quaternion.identity, 0.5f); 
     }
 
     protected override void OnStartManipulation(DragGesture gesture)
