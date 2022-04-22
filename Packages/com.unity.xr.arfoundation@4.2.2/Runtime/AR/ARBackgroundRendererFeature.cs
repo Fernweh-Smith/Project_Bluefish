@@ -1,4 +1,5 @@
 #undef UNITY_EDITOR
+#undef UNITY_EDITOR
 using UnityEngine;
 using UnityEngine.Rendering;
 #if MODULE_URP_ENABLED
