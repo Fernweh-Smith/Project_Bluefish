@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.AR;
 
 public class ARSelectionInteractable_02 : ARSelectionInteractable
@@ -16,11 +17,18 @@ public class ARSelectionInteractable_02 : ARSelectionInteractable
     bool trackStarted = false;
     bool canProceed = false;
 
+    public bool toggle;
 
+    //// NEW APPROACH ////
+    // Store if selection state changed on last tap
+    // If it did and current tap is a double tap, reverse the selection mode
+    
     private void Start()
     {
         CanStartManipulationForGesture(new TapGesture(new TapGestureRecognizer(), new Touch()));
     }
+
+    public override bool IsSelectableBy(IXRSelectInteractor interactor) => toggle;
 
     protected override bool CanStartManipulationForGesture(TapGesture gesture)
     {
@@ -49,12 +57,12 @@ public class ARSelectionInteractable_02 : ARSelectionInteractable
             StartCoroutine(coroutine);
             Debug.Log("End");
             Debug.Log(canProceed);
-            return canProceed;
+            //return canProceed;
             
         }
 
         
-        return false;
+        return true;
 
     }
 
