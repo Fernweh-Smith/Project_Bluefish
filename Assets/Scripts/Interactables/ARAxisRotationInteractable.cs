@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.AR;
 using DG.Tweening;
 
-[RequireComponent(typeof(ARSelectionInteractable))]
+[RequireComponent(typeof(ARSelectionInteractable_02))]
 public class ARAxisRotationInteractable : ARBaseGestureInteractable
 {
 
@@ -14,22 +14,24 @@ public class ARAxisRotationInteractable : ARBaseGestureInteractable
     [SerializeField]
     private float twistRotationRate = 2.5f;
 
+    
+
 
     protected override bool CanStartManipulationForGesture(DragGesture gesture) => IsGameObjectSelected();
     protected override bool CanStartManipulationForGesture(TwistGesture gesture) => IsGameObjectSelected();
-
-    public void OnResetRotation(){
-        transform.DOLocalRotateQuaternion(Quaternion.identity, 0.5f); 
-    }
+    
 
     protected override void OnStartManipulation(DragGesture gesture)
     {
+        Debug.Log("OnStartManipulation for drag called");
         transform.DOKill();
         arcamera = Camera.main;
     }
 
     protected override void OnStartManipulation(TwistGesture gesture)
     {
+        Debug.Log("OnStartManipulation for twist called");
+
         transform.DOKill();
         arcamera = Camera.main;
     }
