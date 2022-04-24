@@ -37,7 +37,6 @@ public class ARResetLocalTransformInteractable : ARBaseGestureInteractable
 
     protected override void OnEndManipulation(TapGesture gesture)
     {
-        Debug.Log("OnEndManipulation for tap called");
         if (gesture.isCanceled)
             return;
         if (tapTracker.IsDoubleTap(Time.time))
