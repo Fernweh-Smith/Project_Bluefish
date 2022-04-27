@@ -7,57 +7,53 @@ using UnityEngine.XR.Interaction.Toolkit.AR;
 
 public class ARSelectionInteractable_02 : ARSelectionInteractable
 {
-    TapTracker tapTracker = new TapTracker();
 
-    bool m_GestureSelected;
-    bool changedLastTap;
+    bool selectionActive;
+    bool isWaiting = false;
 
-    public event Action<bool> OnDoubleTap;
+    Coroutine WaitCoroutine;
 
-    //// NEW APPROACH ////
-    // Store if selection state changed on last tap
-    // If it did and current tap is a double tap, reverse the selection mode
+    public override bool IsSelectableBy(IXRSelectInteractor interactor) => interactor is ARGestureInteractor && selectionActive;
 
 
-    public override bool IsSelectableBy(IXRSelectInteractor interactor) => interactor is ARGestureInteractor && m_GestureSelected;
+    protected override bool CanStartManipulationForGesture(TapGesture gesture) => !EventSystem.current.IsPointerOverGameObject(gesture.fingerId);
 
-
-    protected override bool CanStartManipulationForGesture(TapGesture gesture)
-    {
-        if (EventSystem.current.IsPointerOverGameObject(gesture.fingerId))
-        {
-            return false;
-        }
-
-        return true;
-
-    }
 
     protected override void OnEndManipulation(TapGesture gesture)
     {
-        bool selectionStatePreManipulation = m_GestureSelected;
-
         if (gesture.isCanceled)
             return;
         if (gestureInteractor == null)
             return;
 
-        if(tapTracker.IsDoubleTap(Time.time) && changedLastTap){
-            Debug.Log("Double Tap Occured. Undoing Change.");
-            m_GestureSelected = !m_GestureSelected;
-            changedLastTap = false;
-            OnDoubleTap?.Invoke(m_GestureSelected);
-            return;
+        if (!isWaiting)
+        {
+
+            WaitCoroutine = StartCoroutine(WaitForDoubleTap(0.2f, gesture));
         }
+        else
+        {
+            StopCoroutine(WaitCoroutine);
+            isWaiting = false;
+            Debug.Log("WaitForDoubleTap Coroutine Cancelled");
+        }
+    }
+
+    IEnumerator WaitForDoubleTap(float maxDelta, TapGesture gesture)
+    {
+        Debug.Log("WaitForDoubleTap Coroutine Started");
+        isWaiting = true;
+        yield return new WaitForSeconds(maxDelta);
+        isWaiting = false;
 
         if (gesture.targetObject == gameObject)
         {
             // Toggle selection
-            m_GestureSelected = !m_GestureSelected;
+            selectionActive = !selectionActive;
         }
         else
-            m_GestureSelected = false;
+            selectionActive = false;
 
-        changedLastTap = selectionStatePreManipulation!=m_GestureSelected;
+        Debug.Log("WaitForDoubleTap Coroutine Ended");
     }
 }
