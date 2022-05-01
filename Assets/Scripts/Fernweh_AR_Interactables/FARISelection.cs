@@ -67,13 +67,13 @@ namespace Fernweh.AR.Interactables
             {
                 StopCoroutine(WaitCoroutine);
                 isWaiting = false;
-                Debug.Log("WaitForDoubleTap Coroutine Cancelled");
+                // Debug.Log("WaitForDoubleTap Coroutine Cancelled");
             }
         }
 
         IEnumerator WaitForDoubleTap(float maxDelta, TapGesture gesture)
         {
-            Debug.Log("WaitForDoubleTap Coroutine Started");
+            // Debug.Log("WaitForDoubleTap Coroutine Started");
             isWaiting = true;
             yield return new WaitForSeconds(maxDelta);
             isWaiting = false;
@@ -94,7 +94,7 @@ namespace Fernweh.AR.Interactables
 
             stateLastInteraction = selectionActive;
 
-            Debug.Log("WaitForDoubleTap Coroutine Ended");
+            // Debug.Log("WaitForDoubleTap Coroutine Ended");
         }
 
         /// <inheritdoc />
