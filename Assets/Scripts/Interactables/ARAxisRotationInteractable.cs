@@ -14,9 +14,6 @@ public class ARAxisRotationInteractable : ARBaseGestureInteractable
     [SerializeField]
     private float twistRotationRate = 2.5f;
 
-    
-
-
     protected override bool CanStartManipulationForGesture(DragGesture gesture) => IsGameObjectSelected();
     protected override bool CanStartManipulationForGesture(TwistGesture gesture) => IsGameObjectSelected();
     
