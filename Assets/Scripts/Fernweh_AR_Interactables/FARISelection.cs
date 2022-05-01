@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.AR;
@@ -10,10 +11,17 @@ namespace Fernweh.AR.Interactables
     [AddComponentMenu("XR/Fernweh/FARISelection", 0)]
     public class FARISelection : ARBaseGestureInteractable
     {
-        bool selectionActive;
+        bool selectionActive = false;
         bool isWaiting = false;
 
+        bool stateLastInteraction = false;
+
         Coroutine WaitCoroutine;
+
+        [SerializeField]
+        UnityEvent OnSelected;
+        [SerializeField]
+        UnityEvent OnDeselected;
 
         [SerializeField, Tooltip("The visualization GameObject that will become active when the object is selected.")]
         GameObject m_SelectionVisualization;
@@ -29,7 +37,18 @@ namespace Fernweh.AR.Interactables
         public override bool IsSelectableBy(IXRSelectInteractor interactor) => interactor is ARGestureInteractor && selectionActive;
 
 
-        protected override bool CanStartManipulationForGesture(TapGesture gesture) => !EventSystem.current.IsPointerOverGameObject(gesture.fingerId);
+        protected override bool CanStartManipulationForGesture(TapGesture gesture)
+        {
+            if (EventSystem.current == null)
+            {
+                return true;
+            }
+            else
+            {
+
+                return !EventSystem.current.IsPointerOverGameObject(gesture.fingerId);
+            }
+        }
 
 
         protected override void OnEndManipulation(TapGesture gesture)
@@ -66,6 +85,14 @@ namespace Fernweh.AR.Interactables
             }
             else
                 selectionActive = false;
+
+            if(stateLastInteraction!=selectionActive && selectionActive){
+                OnSelected?.Invoke();
+            } else if(stateLastInteraction!=selectionActive && !selectionActive){
+                OnDeselected?.Invoke();
+            }
+
+            stateLastInteraction = selectionActive;
 
             Debug.Log("WaitForDoubleTap Coroutine Ended");
         }
