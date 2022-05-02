@@ -8,9 +8,12 @@ public class PropController : MonoBehaviour
 {
     public static event Action<PropController> InteractableSelected;
     public static event Action<PropController> InteractableDeselected;
+    
 
     [SerializeField]
     Transform interactable;
+    [SerializeField]
+    Transform model;
     
 
 
@@ -29,6 +32,6 @@ public class PropController : MonoBehaviour
     }
 
     public void MoveProp(){
-        
+
     }
 }

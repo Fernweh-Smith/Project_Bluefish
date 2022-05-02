@@ -6,7 +6,7 @@ using UnityEditor;
 public class CenterToOriginWindow : EditorWindow
 {
     bool useLocalSpace;
-    [MenuItem("Window/Fernweh/Center To Origin")]
+    [MenuItem("Project_Bluefish/Center To Origin")]
     public static void ShowWindow(){
         EditorWindow.GetWindow<CenterToOriginWindow>("Center To Origin");
     }

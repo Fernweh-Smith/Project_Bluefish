@@ -7,7 +7,7 @@ using UnityEditor;
 public class LogBoundsWindow : EditorWindow
 {
     
-    [MenuItem("Window/Fernweh/LogBounds")]
+    [MenuItem("Project_Bluefish/LogBounds")]
     public static void ShowWindow(){
         EditorWindow.GetWindow<LogBoundsWindow>("Log Bounds");
     }
