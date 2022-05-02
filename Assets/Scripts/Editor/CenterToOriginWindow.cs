@@ -6,9 +6,9 @@ using UnityEditor;
 public class CenterToOriginWindow : EditorWindow
 {
     bool useLocalSpace;
-    [MenuItem("Window/CenterToOrigin")]
+    [MenuItem("Window/Fernweh/Center To Origin")]
     public static void ShowWindow(){
-        EditorWindow.GetWindow<CenterToOriginWindow>("CenterToOrigin");
+        EditorWindow.GetWindow<CenterToOriginWindow>("Center To Origin");
     }
     private void OnGUI() {
         //Window Code
