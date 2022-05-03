@@ -37,7 +37,8 @@ namespace Fernweh.AR.Interactables
         private static List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
 
-        private void Start() {
+        private void Start()
+        {
             placementObject = Instantiate(placementPrefab, Vector3.zero, Quaternion.identity);
             reticleObject = Instantiate(reticlePrefab, Vector3.zero, Quaternion.identity);
 
@@ -47,22 +48,61 @@ namespace Fernweh.AR.Interactables
         }
 
 
-        private void Update() {
-            if(IsObjectPlaced)
+        private void Update()
+        {
+            if (IsObjectPlaced)
                 return;
-            
-            Vector2 screenCenter = new Vector2(Screen.width*0.5f, Screen.height*0.5f);
-            if(GestureTransformationUtility.Raycast(screenCenter, hits, arSessionOrigin, TrackableType.PlaneWithinPolygon)){
+
+            Vector2 screenCenter = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
+            if (GestureTransformationUtility.Raycast(screenCenter, hits, arSessionOrigin, TrackableType.PlaneWithinPolygon))
+            {
                 var firstHit = hits[0];
                 reticleObject.transform.position = firstHit.pose.position;
                 reticleObject.transform.rotation = firstHit.pose.rotation;
                 reticleObject.SetActive(true);
-            } else {
+            }
+            else
+            {
                 reticleObject.SetActive(false);
             }
         }
 
 
+        protected override bool CanStartManipulationForGesture(TapGesture gesture)
+        {
+            if (IsObjectPlaced)
+                return false;
+
+            if (Helpers.IsOverUI(gesture.fingerId))
+                return false;
+
+            if (gesture.targetObject != null)
+                return false;
+
+            return true;
+        }
+
+
+        protected override void OnEndManipulation(TapGesture gesture)
+        {
+            if(gesture.isCanceled)
+                return;
+
+            Vector2 screenCenter = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
+            if (GestureTransformationUtility.Raycast(screenCenter, hits, arSessionOrigin, TrackableType.PlaneWithinPolygon))
+            {
+                var firstHit = hits[0];
+                placementObject.transform.position = firstHit.pose.position;
+                placementObject.transform.rotation = firstHit.pose.rotation;
+                placementObject.SetActive(true);
+                reticleObject.SetActive(false);
+                IsObjectPlaced = true;
+            }
+            else
+            {
+                placementObject.SetActive(false);
+            }
+        }
 
     }
 }
