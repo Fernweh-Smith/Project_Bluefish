@@ -526,7 +526,7 @@ GameObject:
   - component: {fileID: 1946712737}
   - component: {fileID: 1946712739}
   m_Layer: 0
-  m_Name: Placement
+  m_Name: PlacementManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -718,9 +718,7 @@ MonoBehaviour:
   m_XROrigin: {fileID: 0}
   m_ARSessionOrigin: {fileID: 2058607448}
   placementPrefab: {fileID: 6524218337504514745, guid: 2887d36ea3855ec41a6bb529d812dabd, type: 3}
-  onObjectPlaced:
-    m_PersistentCalls:
-      m_Calls: []
+  reticlePrefab: {fileID: 3639036893490591608, guid: 4ddf507ff11cbab43ad5f02ee17a2e56, type: 3}
 --- !u!1 &2058607446
 GameObject:
   m_ObjectHideFlags: 0

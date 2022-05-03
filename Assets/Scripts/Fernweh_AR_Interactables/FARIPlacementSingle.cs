@@ -8,125 +8,62 @@ using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using System;
 
-
+/*
+New Class Flow
+Spawn Reticle and Prefab at start. Hide objects
+On Frame Update - If no object has been placed, raycast into scene and place reticle. If not hit then hide reticle.
+    If object has been placed, do nothing.
+On Tap - Raycast into scene, If a hit occurs, show and place prefab, hide reticle, and set "Object Placed" to true.
+    If "ObjectPlaced" is true, then dont allow placement to continue
+*/
 
 namespace Fernweh.AR.Interactables
 {
-    [Serializable]
-    public class ARObjectSinglePlacementEvent : UnityEvent<ARObjectSinglePlacementEventArgs>
-    {
-    }
-
-    public class ARObjectSinglePlacementEventArgs
-    {
-        //Hello There
-        /// <summary>
-        /// The Interactable that placed the object.
-        /// </summary>
-        public FARIPlacementSingle placementInteractable { get; set; }
-
-        /// <summary>
-        /// The object that was placed.
-        /// </summary>
-        public GameObject placementObject { get; set; }
-    }
-
-
-
     [AddComponentMenu("XR/Fernweh/FARIPlacementSingle")]
     public class FARIPlacementSingle : ARBaseGestureInteractable
     {
         [SerializeField]
-        private GameObject placementPrefab;
+        GameObject placementPrefab;
+
+        GameObject placementObject;
 
         [SerializeField]
-        private ARObjectSinglePlacementEvent onObjectPlaced;
+        GameObject reticlePrefab;
 
+        GameObject reticleObject;
 
-        private GameObject placedObject;
+        bool IsObjectPlaced = false;
 
         private static List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
-        private static GameObject trackablesObject;
 
+        private void Start() {
+            placementObject = Instantiate(placementPrefab, Vector3.zero, Quaternion.identity);
+            reticleObject = Instantiate(reticlePrefab, Vector3.zero, Quaternion.identity);
 
-
-        protected override bool CanStartManipulationForGesture(TapGesture gesture)
-        {
-
-            // Debug.Log("CanStartManipulationForGesture Called");
-            // Debug.Log(gesture.startPosition);
-            //if (Helpers.IsOverUI(gesture.startPosition)) { return false; }
-            // Only Works On Standalone Input Module
-            if(EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(gesture.fingerId))
-            {
-                Debug.Log("Gesture Over UI");
-                return false;
-            }
-
-            //if(Helpers.IsOverUINEW(gesture.startPosition)){ return false; }
-
-
-
-            if (gesture.targetObject != null)
-            {
-                Debug.Log("Gesture Has Target");
-                Debug.Log("Target Object = " + gesture.targetObject.ToString());
-
-                return false;
-            }
-
-
-            return true;
+            placementObject.SetActive(false);
+            reticleObject.SetActive(false);
 
         }
 
 
-
-        protected override void OnEndManipulation(TapGesture gesture)
-        {
-            base.OnEndManipulation(gesture);
-            // Debug.Log("OnEndManipulation Called");
-            if (gesture.isCanceled)
-            {
-                Debug.Log("Gesture Cancelled");
+        private void Update() {
+            if(IsObjectPlaced)
                 return;
-            }
-
-
-
-            if (GestureTransformationUtility.Raycast(gesture.startPosition, hits,
-                this.arSessionOrigin, TrackableType.PlaneWithinPolygon))
-            {
-                var hit = hits[0];
-
-
-                if (placedObject == null)
-                {
-                    placedObject = Instantiate(placementPrefab, hit.pose.position, hit.pose.rotation);
-
-                    var anchor = new GameObject("PlacementAnchor!").transform;
-                    anchor.position = hit.pose.position;
-                    anchor.rotation = hit.pose.rotation;
-                    placedObject.transform.parent = anchor; //Without this we cannot move object with interactables
-
-
-                    //if(trackablesObject == null) { trackablesObject = GameObject.Find("Trackabeles"); }
-                    //if(trackablesObject != null){ anchor.parent = trackablesObject.transform; }
-
-                    ARObjectSinglePlacementEventArgs e = new ARObjectSinglePlacementEventArgs();
-                    e.placementInteractable = this;
-                    e.placementObject = placedObject;
-
-                    onObjectPlaced?.Invoke(e);
-                }
-                else if (!placedObject.GetComponent<ARSelectionInteractable>().isSelected)
-                {
-                    placedObject.transform.position = hit.pose.position;
-                    placedObject.transform.rotation = hit.pose.rotation;
-                }
+            
+            Vector2 screenCenter = new Vector2(Screen.width*0.5f, Screen.height*0.5f);
+            if(GestureTransformationUtility.Raycast(screenCenter, hits, arSessionOrigin, TrackableType.PlaneWithinPolygon)){
+                var firstHit = hits[0];
+                reticleObject.transform.position = firstHit.pose.position;
+                reticleObject.transform.rotation = firstHit.pose.rotation;
+                reticleObject.SetActive(true);
+            } else {
+                reticleObject.SetActive(false);
             }
         }
+
+
+
     }
 }
 
