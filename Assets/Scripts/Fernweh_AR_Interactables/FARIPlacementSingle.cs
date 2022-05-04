@@ -45,6 +45,12 @@ namespace Fernweh.AR.Interactables
             placementObject.SetActive(false);
             reticleObject.SetActive(false);
 
+            var StageManagerComponent = placementObject.GetComponent<StageManager>();
+            if(StageManagerComponent != null){
+                float retScale = StageManagerComponent.StageRadius * 2f;
+                reticleObject.transform.localScale = new Vector3(retScale, retScale, retScale);
+            }
+
         }
 
 

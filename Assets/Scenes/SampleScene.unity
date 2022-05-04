@@ -718,7 +718,7 @@ MonoBehaviour:
   m_XROrigin: {fileID: 0}
   m_ARSessionOrigin: {fileID: 2058607448}
   placementPrefab: {fileID: 6524218337504514745, guid: 2887d36ea3855ec41a6bb529d812dabd, type: 3}
-  reticlePrefab: {fileID: 3639036893490591608, guid: 4ddf507ff11cbab43ad5f02ee17a2e56, type: 3}
+  reticlePrefab: {fileID: 2075347794203730488, guid: 2d89947a0fc767b4fb75d1d37238aafe, type: 3}
 --- !u!1 &2058607446
 GameObject:
   m_ObjectHideFlags: 0
@@ -751,7 +751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1760703bbd54c04488a8d10600262ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PlanePrefab: {fileID: 2717259651744606057, guid: b2d103fa436212f43af8d8359cc88df7, type: 3}
+  m_PlanePrefab: {fileID: 0}
   m_DetectionMode: -1
 --- !u!114 &2058607448
 MonoBehaviour:

@@ -8,6 +8,7 @@ public class StageManager : MonoBehaviour
 {
     [SerializeField]
     float stageRadius = 1f;
+    public float StageRadius { get => stageRadius; }
     [SerializeField]
     float packedSize = 0.25f;
 
@@ -26,16 +27,16 @@ public class StageManager : MonoBehaviour
             float theta = (Mathf.PI * 2) / (props.Count) * i;
             float x = stageRadius * Mathf.Cos(theta);
             float z = stageRadius * Mathf.Sin(theta);
-            
+
             var obj = Instantiate(props[i].transform, new Vector3(x, 0, z), Quaternion.identity);
 
             obj.transform.rotation = Quaternion.LookRotation(Vector3.Normalize(obj.transform.position), Vector3.up);
-            
+
             Vector3 objBoundsSize = obj.GetComponent<PropController>().GetTrueMeshBounds().size;
             float maxAxis = Mathf.Max(objBoundsSize.x, objBoundsSize.y, objBoundsSize.z);
-            obj.transform.localScale *= packedSize/maxAxis;
+            obj.transform.localScale *= packedSize / maxAxis;
 
-            obj.transform.Translate(Vector3.up * (packedSize*0.5f));
+            obj.transform.Translate(Vector3.up * (packedSize * 0.5f));
 
             obj.SetParent(this.transform, false);
 
@@ -60,7 +61,7 @@ public class StageManager : MonoBehaviour
     {
         Debug.Log($"{ctrl} has been selected");
         float height = ctrl.GetTrueMeshBounds().size.y;
-        ctrl.transform.DOLocalMove(new Vector3(0, (height*0.5f) + 0.2f, 0), 0.5f);
+        ctrl.transform.DOLocalMove(new Vector3(0, (height * 0.5f) + 0.2f, 0), 0.5f);
         ctrl.transform.DOScale(Vector3.one, 0.5f);
 
     }
@@ -71,18 +72,19 @@ public class StageManager : MonoBehaviour
         ctrl.ReturnToHome();
     }
 
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         Gizmos.matrix = transform.localToWorldMatrix;
         Gizmos.color = Color.HSVToRGB(330f / 360f, 1f, 1f);
         Gizmos.DrawSphere(Vector3.zero, 0.1f);
     }
-    #endif
+#endif
 
-    #if UNITY_EDITOR
-    private void OnDrawGizmosSelected() {
-        
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
+    {
+
         Gizmos.matrix = transform.localToWorldMatrix;
         Gizmos.color = Color.HSVToRGB(197 / 360f, 1f, 1f);
 
@@ -96,9 +98,9 @@ public class StageManager : MonoBehaviour
             float theta = (Mathf.PI * 2) / (props.Count) * i;
             float x = stageRadius * Mathf.Cos(theta);
             float z = stageRadius * Mathf.Sin(theta);
-            Gizmos.DrawWireCube(new Vector3(x,packedSize*0.5f,z), new Vector3(packedSize,packedSize,packedSize));
+            Gizmos.DrawWireCube(new Vector3(x, packedSize * 0.5f, z), new Vector3(packedSize, packedSize, packedSize));
 
         }
     }
-    #endif
+#endif
 }
