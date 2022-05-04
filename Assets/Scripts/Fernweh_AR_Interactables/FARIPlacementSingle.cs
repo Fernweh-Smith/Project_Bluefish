@@ -33,6 +33,8 @@ namespace Fernweh.AR.Interactables
         GameObject reticleObject;
 
         bool IsObjectPlaced = false;
+        [SerializeField]
+        bool KeepReticleWhenPlaced;
 
         private static List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
@@ -101,7 +103,7 @@ namespace Fernweh.AR.Interactables
                 placementObject.transform.position = firstHit.pose.position;
                 placementObject.transform.rotation = firstHit.pose.rotation;
                 placementObject.SetActive(true);
-                reticleObject.SetActive(false);
+                reticleObject.SetActive(KeepReticleWhenPlaced);
                 IsObjectPlaced = true;
             }
             else

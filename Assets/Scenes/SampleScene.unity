@@ -719,6 +719,7 @@ MonoBehaviour:
   m_ARSessionOrigin: {fileID: 2058607448}
   placementPrefab: {fileID: 6524218337504514745, guid: 2887d36ea3855ec41a6bb529d812dabd, type: 3}
   reticlePrefab: {fileID: 2075347794203730488, guid: 2d89947a0fc767b4fb75d1d37238aafe, type: 3}
+  KeepReticleWhenPlaced: 1
 --- !u!1 &2058607446
 GameObject:
   m_ObjectHideFlags: 0
