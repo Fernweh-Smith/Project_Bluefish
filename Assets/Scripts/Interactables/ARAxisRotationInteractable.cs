@@ -20,15 +20,12 @@ public class ARAxisRotationInteractable : ARBaseGestureInteractable
 
     protected override void OnStartManipulation(DragGesture gesture)
     {
-        Debug.Log("OnStartManipulation for drag called");
         transform.DOKill();
         arcamera = Camera.main;
     }
 
     protected override void OnStartManipulation(TwistGesture gesture)
     {
-        Debug.Log("OnStartManipulation for twist called");
-
         transform.DOKill();
         arcamera = Camera.main;
     }
@@ -37,6 +34,8 @@ public class ARAxisRotationInteractable : ARBaseGestureInteractable
     {
         if (arcamera == null)
             return;
+
+        Debug.Log("Continue Manipulation");
 
         //Producing Appropriate rotation from 
         Vector3 ToCamVec = Vector3.Normalize(arcamera.transform.position - transform.position);
@@ -54,7 +53,6 @@ public class ARAxisRotationInteractable : ARBaseGestureInteractable
 
     protected override void OnContinueManipulation(TwistGesture gesture)
     {
-        Debug.Log("OnContinueManipulation Called");
 
         if (arcamera == null)
             return;

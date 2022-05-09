@@ -373,6 +373,26 @@ PrefabInstance:
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1887156534414138948, guid: 1e176be068b2da0418df75575e59c9cf, type: 3}
+      propertyPath: trailTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887156534414138948, guid: 1e176be068b2da0418df75575e59c9cf, type: 3}
+      propertyPath: useSmothing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887156534414138948, guid: 1e176be068b2da0418df75575e59c9cf, type: 3}
+      propertyPath: smoothingAmount
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887156534414138948, guid: 1e176be068b2da0418df75575e59c9cf, type: 3}
+      propertyPath: rotDiffThreshold
+      value: 0.0001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887156534414138948, guid: 1e176be068b2da0418df75575e59c9cf, type: 3}
+      propertyPath: m_ARSessionOrigin
+      value: 
+      objectReference: {fileID: 1544233250}
     - target: {fileID: 9143674321717581454, guid: 1e176be068b2da0418df75575e59c9cf, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -826,7 +846,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1860482090}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ARResetLocalTransformInteractable, Assembly-CSharp
         m_MethodName: OnResetRotation
         m_Mode: 1
@@ -1232,17 +1252,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9143674321717581454, guid: 1e176be068b2da0418df75575e59c9cf, type: 3}
   m_PrefabInstance: {fileID: 322463825}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1860482090 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6123634408718943142, guid: 1e176be068b2da0418df75575e59c9cf, type: 3}
-  m_PrefabInstance: {fileID: 322463825}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1481298070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a64b884eb835f9f449648604139519cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1951747192
 GameObject:
   m_ObjectHideFlags: 0

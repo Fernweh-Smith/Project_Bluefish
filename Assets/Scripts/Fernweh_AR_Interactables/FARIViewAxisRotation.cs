@@ -18,6 +18,26 @@ namespace Fernweh.AR.Interactables
         [SerializeField]
         private float twistRotationRate = 2.5f;
 
+        bool m_IsActive;
+
+        Quaternion desiredLocalRotation = Quaternion.identity;
+        [SerializeField]
+        bool useSmothing = true;
+        [SerializeField]
+        float trailTime = 0.1f;
+        [SerializeField]
+        float rotDiffThreshold = 0.0001f;
+
+        
+        //This is an interface function. I have no idea how this works other than Its called every frame.
+        /// <inheritdoc />
+        public override void ProcessInteractable(XRInteractionUpdateOrder.UpdatePhase updatePhase)
+        {
+            base.ProcessInteractable(updatePhase);
+
+            if (updatePhase == XRInteractionUpdateOrder.UpdatePhase.Fixed)
+                UpdateRotation();
+        }
 
         protected override bool CanStartManipulationForGesture(DragGesture gesture) => IsGameObjectSelected();
         protected override bool CanStartManipulationForGesture(TwistGesture gesture) => IsGameObjectSelected();
@@ -25,23 +45,24 @@ namespace Fernweh.AR.Interactables
 
         protected override void OnStartManipulation(DragGesture gesture)
         {
-            Debug.Log("OnStartManipulation for drag called");
             transform.DOKill();
             arcamera = Camera.main;
+            desiredLocalRotation = transform.localRotation;
         }
 
         protected override void OnStartManipulation(TwistGesture gesture)
         {
-            Debug.Log("OnStartManipulation for twist called");
-
             transform.DOKill();
             arcamera = Camera.main;
+            desiredLocalRotation = transform.localRotation;
         }
 
         protected override void OnContinueManipulation(DragGesture gesture)
         {
             if (arcamera == null)
                 return;
+
+            m_IsActive = true;
 
             //Producing Appropriate rotation from 
             Vector3 ToCamVec = Vector3.Normalize(arcamera.transform.position - transform.position);
@@ -54,24 +75,48 @@ namespace Fernweh.AR.Interactables
             var horizontalRotation = -360f * (gesture.delta.x / dragNoramliser) * dragRotationRate;
             var verticalRotation = -360f * (gesture.delta.y / dragNoramliser) * dragRotationRate;
 
-            transform.Rotate((ToCamRotation * Vector3.up), horizontalRotation, Space.World);
-            transform.Rotate((ToCamRotation * Vector3.right), verticalRotation, Space.World);
+            // transform.Rotate((ToCamRotation * Vector3.up), horizontalRotation, Space.World);
+            // transform.Rotate((ToCamRotation * Vector3.right), verticalRotation, Space.World);
+        
+            var camYRot = Quaternion.AngleAxis(horizontalRotation, (ToCamRotation * Vector3.up));
+            var camXRot = Quaternion.AngleAxis(verticalRotation, (ToCamRotation * Vector3.right));
+            var dragRot = camYRot * camXRot;
 
+            desiredLocalRotation = dragRot * desiredLocalRotation;
+            
         }
 
         protected override void OnContinueManipulation(TwistGesture gesture)
         {
-            Debug.Log("OnContinueManipulation Called");
-
             if (arcamera == null)
                 return;
+
+            m_IsActive = true;
 
             Vector3 ToCamVec = Vector3.Normalize(arcamera.transform.position - transform.position);
 
             float rotationAmount = -gesture.deltaRotation * twistRotationRate;
 
-            transform.Rotate(ToCamVec, rotationAmount, Space.World);
+            // transform.Rotate(ToCamVec, rotationAmount, Space.World);
+            var toCamRot = Quaternion.AngleAxis(rotationAmount, ToCamVec);
+            desiredLocalRotation = toCamRot * desiredLocalRotation;
 
+        }
+
+        void UpdateRotation(){
+            if(!m_IsActive)
+                return;
+
+            Quaternion oldLocalRotation = transform.localRotation;
+            Quaternion newLocalRotation = Quaternion.Lerp(
+                oldLocalRotation, desiredLocalRotation, (1f/trailTime)* Time.fixedDeltaTime);
+            
+            if(!useSmothing || Quaternion.Dot(desiredLocalRotation, newLocalRotation)>(1f-rotDiffThreshold)){
+                newLocalRotation = desiredLocalRotation;
+                m_IsActive = false;
+            }
+
+            transform.localRotation = newLocalRotation;
         }
     }
 }
