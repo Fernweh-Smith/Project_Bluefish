@@ -26,6 +26,7 @@ public class PropController : MonoBehaviour
     Vector3 homeScale;
 
     float animTime = 0.5f;
+    Ease easing = Ease.InOutCubic;
 
     private void OnEnable() {
         StageManager.SetHomeTransform += SetHome;
@@ -53,16 +54,16 @@ public class PropController : MonoBehaviour
     public void ResetInteractableTransform()
     {
 
-        interactable.DOLocalRotate(Vector3.zero, animTime);
-        interactable.DOScale(Vector3.one, animTime);
-        interactable.DOLocalMove(Vector3.zero, animTime);
+        interactable.DOLocalRotate(Vector3.zero, animTime).SetEase(easing);
+        interactable.DOScale(Vector3.one, animTime).SetEase(easing);
+        interactable.DOLocalMove(Vector3.zero, animTime).SetEase(easing);
     }
 
     
     public void ReturnToHome(){
-        transform.DOLocalMove(homePos, animTime);
-        transform.DOLocalRotateQuaternion(homeRot, animTime);
-        transform.DOScale(homeScale, animTime);
+        transform.DOLocalMove(homePos, animTime).SetEase(easing);
+        transform.DOLocalRotateQuaternion(homeRot, animTime).SetEase(easing);
+        transform.DOScale(homeScale, animTime).SetEase(easing);
         ResetInteractableTransform();
     }
 

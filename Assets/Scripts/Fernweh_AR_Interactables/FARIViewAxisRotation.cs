@@ -61,7 +61,7 @@ namespace Fernweh.AR.Interactables
         {
             if (arcamera == null)
                 return;
-            Debug.Log("Continue Manip");
+            
             m_IsActive = true;
 
             //Producing Appropriate rotation from 
