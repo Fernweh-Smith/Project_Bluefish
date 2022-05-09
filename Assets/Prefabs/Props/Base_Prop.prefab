@@ -276,6 +276,9 @@ MonoBehaviour:
   m_ARSessionOrigin: {fileID: 0}
   dragRotationRate: 1
   twistRotationRate: 2.5
+  useSmothing: 1
+  trailTime: 0.11
+  rotDiffThreshold: 0.0001
 --- !u!114 &2344173707374149067
 MonoBehaviour:
   m_ObjectHideFlags: 0

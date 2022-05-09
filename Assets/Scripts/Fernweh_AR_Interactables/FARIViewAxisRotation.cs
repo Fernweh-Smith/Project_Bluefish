@@ -20,7 +20,7 @@ namespace Fernweh.AR.Interactables
 
         bool m_IsActive;
 
-        Quaternion desiredLocalRotation = Quaternion.identity;
+        Quaternion desiredRotation = Quaternion.identity;
         [SerializeField]
         bool useSmothing = true;
         [SerializeField]
@@ -47,21 +47,21 @@ namespace Fernweh.AR.Interactables
         {
             transform.DOKill();
             arcamera = Camera.main;
-            desiredLocalRotation = transform.localRotation;
+            desiredRotation = transform.rotation;
         }
 
         protected override void OnStartManipulation(TwistGesture gesture)
         {
             transform.DOKill();
             arcamera = Camera.main;
-            desiredLocalRotation = transform.localRotation;
+            desiredRotation = transform.rotation;
         }
 
         protected override void OnContinueManipulation(DragGesture gesture)
         {
             if (arcamera == null)
                 return;
-
+            Debug.Log("Continue Manip");
             m_IsActive = true;
 
             //Producing Appropriate rotation from 
@@ -69,6 +69,7 @@ namespace Fernweh.AR.Interactables
             Vector3 UpVec = arcamera.transform.up;
             Vector3.OrthoNormalize(ref ToCamVec, ref UpVec);
             Quaternion ToCamRotation = Quaternion.LookRotation(ToCamVec, UpVec);
+            
 
             float dragNoramliser = Mathf.Min(Screen.width, Screen.height);
 
@@ -77,12 +78,14 @@ namespace Fernweh.AR.Interactables
 
             // transform.Rotate((ToCamRotation * Vector3.up), horizontalRotation, Space.World);
             // transform.Rotate((ToCamRotation * Vector3.right), verticalRotation, Space.World);
-        
+            
             var camYRot = Quaternion.AngleAxis(horizontalRotation, (ToCamRotation * Vector3.up));
             var camXRot = Quaternion.AngleAxis(verticalRotation, (ToCamRotation * Vector3.right));
             var dragRot = camYRot * camXRot;
+            
+            desiredRotation = dragRot * desiredRotation;
 
-            desiredLocalRotation = dragRot * desiredLocalRotation;
+            // transform.rotation = desiredLocalRotation;
             
         }
 
@@ -99,7 +102,7 @@ namespace Fernweh.AR.Interactables
 
             // transform.Rotate(ToCamVec, rotationAmount, Space.World);
             var toCamRot = Quaternion.AngleAxis(rotationAmount, ToCamVec);
-            desiredLocalRotation = toCamRot * desiredLocalRotation;
+            desiredRotation = toCamRot * desiredRotation;
 
         }
 
@@ -107,16 +110,16 @@ namespace Fernweh.AR.Interactables
             if(!m_IsActive)
                 return;
 
-            Quaternion oldLocalRotation = transform.localRotation;
-            Quaternion newLocalRotation = Quaternion.Lerp(
-                oldLocalRotation, desiredLocalRotation, (1f/trailTime)* Time.fixedDeltaTime);
+            Quaternion oldRotation = transform.rotation;
+            Quaternion newRotaion = Quaternion.Lerp(
+                oldRotation, desiredRotation, (1f/trailTime)* Time.fixedDeltaTime);
             
-            if(!useSmothing || Quaternion.Dot(desiredLocalRotation, newLocalRotation)>(1f-rotDiffThreshold)){
-                newLocalRotation = desiredLocalRotation;
+            if(!useSmothing || Quaternion.Dot(desiredRotation, newRotaion)>(1f-rotDiffThreshold)){
+                newRotaion = desiredRotation;
                 m_IsActive = false;
             }
 
-            transform.localRotation = newLocalRotation;
+            transform.rotation = newRotaion;
         }
     }
 }
