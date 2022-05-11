@@ -47,6 +47,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactable: {fileID: 2344173707374149066}
   model: {fileID: 2344173707463558321}
+  preciseColliders:
+  - {fileID: 2344173707463558322}
+  roughColliders:
+  - {fileID: 750278178289943869}
+  - {fileID: 8734856701640075363}
 --- !u!1 &2344173707374149065
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,7 +283,6 @@ MonoBehaviour:
   twistRotationRate: 2.5
   useSmothing: 1
   trailTime: 0.11
-  rotDiffThreshold: 0.0001
 --- !u!114 &2344173707374149067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,6 +375,8 @@ GameObject:
   - component: {fileID: 2344173707463558324}
   - component: {fileID: 2344173707463558323}
   - component: {fileID: 2344173707463558322}
+  - component: {fileID: 750278178289943869}
+  - component: {fileID: 8734856701640075363}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -457,6 +463,33 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2427691155043905151, guid: 775c96f25b29a464c96e04f3e961ff06, type: 3}
+--- !u!65 &750278178289943869
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2344173707463558320}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5498533, y: 0.48440808, z: 0.07258974}
+  m_Center: {x: -0.01843679, y: 0.6388142, z: -0.0012211055}
+--- !u!136 &8734856701640075363
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2344173707463558320}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.11
+  m_Height: 1.16
+  m_Direction: 1
+  m_Center: {x: -0.018406898, y: 0.17, z: -0.0012211036}
 --- !u!1 &2344173707527822838
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,7 +538,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2344173707527822838}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

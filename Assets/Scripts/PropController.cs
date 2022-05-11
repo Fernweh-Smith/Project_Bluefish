@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using DG.Tweening;
+using Fernweh.AR.Interactables;
 
 public class PropController : MonoBehaviour
 {
@@ -14,6 +15,11 @@ public class PropController : MonoBehaviour
     Transform interactable;
     [SerializeField]
     Transform model;
+
+    [SerializeField]
+    List<Collider> preciseColliders;
+    [SerializeField]
+    List<Collider> roughColliders;
 
     public Transform Model
     {
@@ -34,6 +40,12 @@ public class PropController : MonoBehaviour
 
     private void OnDisable() {
         StageManager.SetHomeTransform -= SetHome;
+    }
+
+    private void Awake() {
+        if(interactable!=null){
+            SwitchColliders(true);
+        }
     }
 
     void SetHome(){
@@ -69,5 +81,18 @@ public class PropController : MonoBehaviour
 
     public Bounds GetTrueMeshBounds(){
         return Model.GetComponent<MeshFilter>().sharedMesh.bounds;
+    }
+
+    public void SwitchColliders(bool usePrecise){
+        if(preciseColliders.Count==0 || roughColliders.Count==0)
+            return;
+
+        foreach(Collider c in preciseColliders){
+            c.enabled = usePrecise;
+        }
+
+        foreach(Collider c in roughColliders){
+            c.enabled = !usePrecise;
+        }
     }
 }

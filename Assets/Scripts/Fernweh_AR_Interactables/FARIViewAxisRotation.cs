@@ -25,7 +25,6 @@ namespace Fernweh.AR.Interactables
         bool useSmothing = true;
         [SerializeField]
         float trailTime = 0.1f;
-        [SerializeField]
         float rotDiffThreshold = 0.0001f;
 
         
@@ -111,7 +110,7 @@ namespace Fernweh.AR.Interactables
                 return;
 
             Quaternion oldRotation = transform.rotation;
-            Quaternion newRotaion = Quaternion.Lerp(
+            Quaternion newRotaion = Quaternion.Slerp(
                 oldRotation, desiredRotation, (1f/trailTime)* Time.fixedDeltaTime);
             
             if(!useSmothing || Quaternion.Dot(desiredRotation, newRotaion)>(1f-rotDiffThreshold)){

@@ -31,8 +31,9 @@ public class StageManager : MonoBehaviour
             var obj = Instantiate(props[i].transform, new Vector3(x, 0, z), Quaternion.identity);
 
             obj.transform.rotation = Quaternion.LookRotation(Vector3.Normalize(obj.transform.position), Vector3.up);
+            PropController objPropController = obj.GetComponent<PropController>();
 
-            Vector3 objBoundsSize = obj.GetComponent<PropController>().GetTrueMeshBounds().size;
+            Vector3 objBoundsSize = objPropController.GetTrueMeshBounds().size;
             float maxAxis = Mathf.Max(objBoundsSize.x, objBoundsSize.y, objBoundsSize.z);
             obj.transform.localScale *= packedSize / maxAxis;
 
@@ -40,7 +41,7 @@ public class StageManager : MonoBehaviour
 
             obj.SetParent(this.transform, false);
 
-
+            objPropController.SwitchColliders(false);
         }
         SetHomeTransform?.Invoke();
     }
@@ -63,13 +64,14 @@ public class StageManager : MonoBehaviour
         float height = ctrl.GetTrueMeshBounds().size.y;
         ctrl.transform.DOLocalMove(new Vector3(0, (height * 0.5f) + 0.2f, 0), 0.5f);
         ctrl.transform.DOScale(Vector3.one, 0.5f);
-
+        ctrl.SwitchColliders(true);
     }
 
     void HandleDeselection(PropController ctrl)
     {
         Debug.Log($"{ctrl} has been deselected");
         ctrl.ReturnToHome();
+        ctrl.SwitchColliders(false);
     }
 
 #if UNITY_EDITOR

@@ -7,6 +7,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 750278178289943869, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Size.x
+      value: 0.23899297
+      objectReference: {fileID: 0}
+    - target: {fileID: 750278178289943869, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Size.y
+      value: 0.3393166
+      objectReference: {fileID: 0}
+    - target: {fileID: 750278178289943869, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Size.z
+      value: 0.18878667
+      objectReference: {fileID: 0}
+    - target: {fileID: 750278178289943869, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 750278178289943869, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Center.x
+      value: 0.038413577
+      objectReference: {fileID: 0}
+    - target: {fileID: 750278178289943869, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Center.y
+      value: 0.5447687
+      objectReference: {fileID: 0}
+    - target: {fileID: 750278178289943869, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Center.z
+      value: -0.0072104856
+      objectReference: {fileID: 0}
     - target: {fileID: 2344173707174735757, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
       propertyPath: m_Name
       value: Wand_Prop
@@ -79,5 +107,29 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: -4006300823370068072, guid: 67be24e8ee52ec04497cfee5403c5fa3, type: 3}
+    - target: {fileID: 8734856701640075363, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Height
+      value: 0.98678374
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734856701640075363, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Radius
+      value: 0.09092496
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734856701640075363, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734856701640075363, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Center.x
+      value: 0.02406478
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734856701640075363, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Center.y
+      value: 0.083391905
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734856701640075363, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Center.z
+      value: -0.0012211055
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}

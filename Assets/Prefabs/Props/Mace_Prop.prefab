@@ -7,6 +7,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 750278178289943869, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Size.x
+      value: 0.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 750278178289943869, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Size.y
+      value: 0.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 750278178289943869, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Size.z
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 750278178289943869, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 750278178289943869, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Center.x
+      value: -0.000043973327
+      objectReference: {fileID: 0}
+    - target: {fileID: 750278178289943869, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Center.y
+      value: 0.8570408
+      objectReference: {fileID: 0}
+    - target: {fileID: 750278178289943869, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Center.z
+      value: 0.0000013113022
+      objectReference: {fileID: 0}
     - target: {fileID: 2344173707174735757, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
       propertyPath: m_Name
       value: Mace_Prop
@@ -79,5 +107,25 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 677154472755901971, guid: 1f2df18c8d37e344092e26ad53b0e864, type: 3}
+    - target: {fileID: 8734856701640075363, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Height
+      value: 1.1330951
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734856701640075363, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734856701640075363, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734856701640075363, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Center.y
+      value: 0.29238588
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734856701640075363, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Center.z
+      value: -0.0012211055
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}

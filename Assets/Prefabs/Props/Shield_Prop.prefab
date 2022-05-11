@@ -7,6 +7,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 750278178289943869, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Size.x
+      value: 0.7720738
+      objectReference: {fileID: 0}
+    - target: {fileID: 750278178289943869, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Size.y
+      value: 0.7720736
+      objectReference: {fileID: 0}
+    - target: {fileID: 750278178289943869, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Size.z
+      value: 0.17195988
+      objectReference: {fileID: 0}
+    - target: {fileID: 750278178289943869, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Center.x
+      value: 0.002646327
+      objectReference: {fileID: 0}
+    - target: {fileID: 750278178289943869, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Center.y
+      value: 0.00041984022
+      objectReference: {fileID: 0}
+    - target: {fileID: 750278178289943869, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Center.z
+      value: 0.018638149
+      objectReference: {fileID: 0}
     - target: {fileID: 2344173707174735757, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
       propertyPath: m_Name
       value: Shield_Prop
@@ -55,6 +79,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2344173707174735759, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: roughColliders.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2344173707463558321, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.002646327
@@ -79,5 +107,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 127070130028343623, guid: 1936cb69ddb2ed94b80717b88483f8a2, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8734856701640075363, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}

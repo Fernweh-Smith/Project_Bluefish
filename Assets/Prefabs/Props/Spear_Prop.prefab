@@ -7,6 +7,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 750278178289943869, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Size.x
+      value: 0.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 750278178289943869, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Size.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 750278178289943869, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Size.z
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 750278178289943869, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Center.x
+      value: -0.0010416806
+      objectReference: {fileID: 0}
+    - target: {fileID: 750278178289943869, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Center.y
+      value: 0.64033103
+      objectReference: {fileID: 0}
+    - target: {fileID: 750278178289943869, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Center.z
+      value: 0.00000008940697
+      objectReference: {fileID: 0}
     - target: {fileID: 2344173707174735757, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
       propertyPath: m_Name
       value: Spear_Prop
@@ -91,5 +115,29 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 392552080624847208, guid: b8429e260a2f3c2489982da2e0f2c575, type: 3}
+    - target: {fileID: 8734856701640075363, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Height
+      value: 1.8482347
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734856701640075363, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Radius
+      value: 0.11553936
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734856701640075363, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734856701640075363, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Center.x
+      value: -0.0010416768
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734856701640075363, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Center.y
+      value: 0.04466805
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734856701640075363, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
+      propertyPath: m_Center.z
+      value: 0.00000009313226
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c05737ebb81ecbd499f9ce7e29d74aab, type: 3}
