@@ -114,7 +114,7 @@ namespace Fernweh.AR.Interactables
                 oldRotation, desiredRotation, (1f/trailTime)* Time.fixedDeltaTime);
             
             if(!useSmothing || Quaternion.Dot(desiredRotation, newRotaion)>(1f-rotDiffThreshold)){
-                newRotaion = desiredRotation;
+                desiredRotation = newRotaion;
                 m_IsActive = false;
             }
 
