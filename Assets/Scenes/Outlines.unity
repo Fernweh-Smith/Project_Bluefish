@@ -148,7 +148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5460416743373746184, guid: 238d5f1b77b9e494180383a7f0480c61, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.135
+      value: -1.274
       objectReference: {fileID: 0}
     - target: {fileID: 5460416743373746184, guid: 238d5f1b77b9e494180383a7f0480c61, type: 3}
       propertyPath: m_LocalRotation.w
@@ -312,7 +312,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2010966721360703333, guid: d0c32318984847e428ac1bce4ea19377, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.2838798
+      value: -0.091
       objectReference: {fileID: 0}
     - target: {fileID: 2010966721360703333, guid: d0c32318984847e428ac1bce4ea19377, type: 3}
       propertyPath: m_LocalPosition.y
@@ -381,7 +381,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3142082337486987172, guid: 992bb947a6df6634487686c2fe6330bc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.105
       objectReference: {fileID: 0}
     - target: {fileID: 3142082337486987172, guid: 992bb947a6df6634487686c2fe6330bc, type: 3}
       propertyPath: m_LocalRotation.w
@@ -552,7 +552,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
